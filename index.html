@@ -2,96 +2,147 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For My Love ❤️</title>
+<title>My Love, This Is For You 💗</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        background: #000;
-        color: white;
-        font-family: 'Poppins', sans-serif;
-        overflow-x: hidden;
-        text-align: center;
-    }
+body {
+    margin: 0;
+    background: #ffeaf4;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    text-align: center;
+    color: #d6337d;
+}
 
-    .button {
-        padding: 15px 25px;
-        background: gold;
-        color: black;
-        font-weight: bold;
-        border-radius: 10px;
-        cursor: pointer;
-        margin-top: 50px;
-        font-size: 20px;
-    }
+button {
+    padding: 15px 30px;
+    background: #ff8fb7;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 50px;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(255,140,180,0.4);
+}
 
-    #boxContainer {
-        margin: auto;
-        margin-top: 60px;
-        width: 280px;
-        height: 280px;
-        position: relative;
-        perspective: 1000px;
-        display: none;
-    }
+#scene {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    perspective: 1500px;
+    margin-top: 120px;
+    display: none;
+}
 
-    .layer {
-        width: 280px;
-        height: 280px;
-        background: black;
-        border: 3px solid gold;
-        position: absolute;
-        top: 0; left: 0;
-        transition: all 0.8s ease;
-        box-shadow: 0 0 20px gold;
-        border-radius: 10px;
-        padding-top: 10px;
-    }
+#giftBox {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    bottom: -500px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: bottom 2s ease;
+}
 
-    .sideText {
-        position: absolute;
-        width: 120px;
-        padding: 8px;
-        background: rgba(255, 215, 0, 0.15);
-        border: 1px solid gold;
-        border-radius: 8px;
-        font-size: 14px;
-    }
+.box-body {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(145deg, #ffbcd4, #ff8fb7);
+    border-radius: 10px;
+    position: relative;
+}
 
-    /* Sides */
-    .top    { top: -140px; left: 80px; }
-    .bottom { bottom: -140px; left: 80px; }
-    .left   { left: -140px; top: 80px; }
-    .right  { right: -140px; top: 80px; }
+.ribbon {
+    width: 30px;
+    height: 200px;
+    background: white;
+    position: absolute;
+    left: 85px;
+    top: 0;
+    border-radius: 5px;
+}
 
-    .centerImage {
-        width: 150px;
-        height: 150px;
-        border-radius: 10px;
-        border: 2px solid gold;
-        object-fit: cover;
-        margin-top: 35px;
-    }
+.ribbon-horizontal {
+    width: 200px;
+    height: 30px;
+    background: white;
+    position: absolute;
+    top: 85px;
+    left: 0;
+    border-radius: 5px;
+}
 
-    .nextBtn {
-        margin-top: 15px;
-        padding: 10px 20px;
-        background: gold;
-        color: black;
-        border-radius: 10px;
-        cursor: pointer;
-        font-weight: bold;
-    }
+.lid {
+    width: 220px;
+    height: 40px;
+    background: linear-gradient(145deg, #ff8fb7, #ffbcd4);
+    border-radius: 8px;
+    position: absolute;
+    top: -40px;
+    left: -10px;
+    transform-origin: bottom;
+    transform: rotateX(0deg);
+    transition: transform 2s ease;
+}
 
-    /* Final message */
-    #finalMessage {
-        display: none;
-        margin-top: 50px;
-        font-size: 24px;
-        color: gold;
-        font-weight: bold;
-    }
+.flap {
+    width: 180px;
+    height: 180px;
+    background: #fff1f7;
+    border: 3px solid #ff8fb7;
+    border-radius: 12px;
+    position: absolute;
+    opacity: 0;
+    transition: all 2s ease;
+    box-shadow: 0 0 15px rgba(255,140,180,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    font-size: 14px;
+    color: #d6337d;
+}
+
+/* Positions */
+.top-flap { top: -190px; left: 10px; }
+.bottom-flap { bottom: -190px; left: 10px; }
+.left-flap { left: -190px; top: 10px; }
+.right-flap { right: -190px; top: 10px; }
+
+.center-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-top: 20px;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    border: 3px solid #ff8fb7;
+}
+
+.nextbtn {
+    margin-top: 15px;
+    padding: 12px 25px;
+    background: #ff8fb7;
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+#finalMessage {
+    display: none;
+    font-size: 28px;
+    color: #d6337d;
+    margin-top: 80px;
+    font-weight: bold;
+}
 </style>
 </head>
 
@@ -101,15 +152,35 @@
     <source src="song.mp3" type="audio/mpeg">
 </audio>
 
-<h1 style="margin-top:30px; color:gold;">💛 A Surprise For You 💛</h1>
+<h1 style="margin-top:40px;">💗 A Special Surprise For You 💗</h1>
+<button onclick="start()">Open My Surprise</button>
 
-<div class="button" onclick="startBox()">Open My Surprise</div>
+<div id="scene">
+    <div id="giftBox">
+        <div class="lid"></div>
+        <div class="box-body">
+            <div class="ribbon"></div>
+            <div class="ribbon-horizontal"></div>
+        </div>
+    </div>
 
-<div id="boxContainer"></div>
-<div id="finalMessage">Happy Birthday My Love ❤️</div>
+    <div class="flap top-flap" id="t1"></div>
+    <div class="flap bottom-flap" id="t2"></div>
+    <div class="flap left-flap" id="t3"></div>
+    <div class="flap right-flap" id="t4"></div>
+
+    <img id="centerImg" class="center-photo">
+    <div id="nextBtn" class="nextbtn" onclick="nextLayer()">Next</div>
+</div>
+
+<div id="finalMessage">💖 Happy Birthday My Love 💖</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
-let layerData = [
+let layer = 0;
+
+let layers = [
     {
         img: "layer1.jpg",
         lines: [
@@ -166,95 +237,81 @@ let layerData = [
     }
 ];
 
-let currentLayer = 0;
+function start() {
+    document.querySelector("button").style.display = "none";
+    document.getElementById("scene").style.display = "block";
 
-function startBox() {
-    document.querySelector(".button").style.display = "none";
-    loadLayer(0);
+    setTimeout(() => {
+        document.getElementById("giftBox").style.bottom = "40px";
+    }, 100);
+
+    setTimeout(openLid, 2200);
 }
 
-function loadLayer(index) {
-    currentLayer = index;
+function openLid() {
+    document.querySelector(".lid").style.transform = "rotateX(120deg)";
+    setTimeout(openFlaps, 2000);
+}
 
-    let c = document.getElementById("boxContainer");
-    c.innerHTML = "";
-    c.style.display = "block";
+function openFlaps() {
+    let L = layers[layer];
 
-    let l = document.createElement("div");
-    l.className = "layer";
+    document.getElementById("t1").innerText = L.lines[0];
+    document.getElementById("t2").innerText = L.lines[1];
+    document.getElementById("t3").innerText = L.lines[2];
+    document.getElementById("t4").innerText = L.lines[3];
 
-    let img = document.createElement("img");
-    img.src = layerData[index].img;
-    img.className = "centerImage";
+    let flaps = document.querySelectorAll(".flap");
+    flaps.forEach(f => f.style.opacity = 1);
 
-    // Create the 4 side texts
-    let top = document.createElement("div");
-    top.className = "sideText top";
-    top.innerText = layerData[index].lines[0];
+    document.getElementById("t1").style.top = "-230px";
+    document.getElementById("t2").style.bottom = "-230px";
+    document.getElementById("t3").style.left = "-230px";
+    document.getElementById("t4").style.right = "-230px";
 
-    let bottom = document.createElement("div");
-    bottom.className = "sideText bottom";
-    bottom.innerText = layerData[index].lines[1];
+    let img = document.getElementById("centerImg");
+    img.src = L.img;
 
-    let left = document.createElement("div");
-    left.className = "sideText left";
-    left.innerText = layerData[index].lines[2];
-
-    let right = document.createElement("div");
-    right.className = "sideText right";
-    right.innerText = layerData[index].lines[3];
-
-    let btn = document.createElement("div");
-    btn.className = "nextBtn";
-    btn.innerText = (index === 5 ? "Finish" : "Next");
-    btn.onclick = nextLayer;
-
-    l.appendChild(top);
-    l.appendChild(bottom);
-    l.appendChild(left);
-    l.appendChild(right);
-    l.appendChild(img);
-    l.appendChild(btn);
-
-    c.appendChild(l);
+    setTimeout(() => {
+        img.style.opacity = 1;
+        document.getElementById("nextBtn").style.opacity = 1;
+    }, 1500);
 }
 
 function nextLayer() {
-    if (currentLayer < 5) {
-        loadLayer(currentLayer + 1);
-    } else {
-        document.getElementById("boxContainer").style.display = "none";
-        document.getElementById("finalMessage").style.display = "block";
-        launchConfetti();
+    layer++;
+
+    if (layer >= layers.length) {
+        endMessage();
+        return;
     }
+
+    resetLayer();
+    setTimeout(openLid, 1000);
 }
 
-/* Confetti */
-function launchConfetti() {
-    const duration = 3000;
-    const end = Date.now() + duration;
+function resetLayer() {
+    document.querySelector(".lid").style.transform = "rotateX(0deg)";
+    document.getElementById("nextBtn").style.opacity = 0;
+    document.getElementById("centerImg").style.opacity = 0;
 
-    (function frame() {
-        confetti({
-            particleCount: 7,
-            angle: 60,
-            spread: 55,
-            origin: { x: 0 }
-        });
-        confetti({
-            particleCount: 7,
-            angle: 120,
-            spread: 55,
-            origin: { x: 1 }
-        });
+    let flaps = document.querySelectorAll(".flap");
+    flaps.forEach(f => {
+        f.style.opacity = 0;
+        f.style.top = "-190px";
+        f.style.bottom = "-190px";
+        f.style.left = "-190px";
+        f.style.right = "-190px";
+    });
+}
 
-        if (Date.now() < end) requestAnimationFrame(frame);
-    })();
+function endMessage() {
+    document.getElementById("scene").style.display = "none";
+    document.getElementById("finalMessage").style.display = "block";
+
+    confetti();
 }
 </script>
-
-<!-- External confetti library -->
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 </body>
 </html>

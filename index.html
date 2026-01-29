@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Love ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
+        text-align: center;
+    }
+
+    .button {
+        padding: 15px 25px;
+        background: gold;
+        color: black;
+        font-weight: bold;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 50px;
+        font-size: 20px;
+    }
+
+    #boxContainer {
+        margin: auto;
+        margin-top: 60px;
+        width: 280px;
+        height: 280px;
+        position: relative;
+        perspective: 1000px;
+        display: none;
+    }
+
+    .layer {
+        width: 280px;
+        height: 280px;
+        background: black;
+        border: 3px solid gold;
+        position: absolute;
+        top: 0; left: 0;
+        transition: all 0.8s ease;
+        box-shadow: 0 0 20px gold;
+        border-radius: 10px;
+        padding-top: 10px;
+    }
+
+    .sideText {
+        position: absolute;
+        width: 120px;
+        padding: 8px;
+        background: rgba(255, 215, 0, 0.15);
+        border: 1px solid gold;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+    /* Sides */
+    .top    { top: -140px; left: 80px; }
+    .bottom { bottom: -140px; left: 80px; }
+    .left   { left: -140px; top: 80px; }
+    .right  { right: -140px; top: 80px; }
+
+    .centerImage {
+        width: 150px;
+        height: 150px;
+        border-radius: 10px;
+        border: 2px solid gold;
+        object-fit: cover;
+        margin-top: 35px;
+    }
+
+    .nextBtn {
+        margin-top: 15px;
+        padding: 10px 20px;
+        background: gold;
+        color: black;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    /* Final message */
+    #finalMessage {
+        display: none;
+        margin-top: 50px;
+        font-size: 24px;
+        color: gold;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<h1 style="margin-top:30px; color:gold;">💛 A Surprise For You 💛</h1>
+
+<div class="button" onclick="startBox()">Open My Surprise</div>
+
+<div id="boxContainer"></div>
+<div id="finalMessage">Happy Birthday My Love ❤️</div>
+
+<script>
+let layerData = [
+    {
+        img: "layer1.jpg",
+        lines: [
+            "You make my world softer just by existing.",
+            "I never believed in “perfect” until I met you.",
+            "My life got brighter the moment you walked into it.",
+            "You’re the best part of every day I live."
+        ]
+    },
+    {
+        img: "layer2.jpg",
+        lines: [
+            "You’re the reason my heart beats a little faster.",
+            "I wish you could see yourself the way I see you.",
+            "Your smile is my daily source of happiness.",
+            "I see the mother of my 2 children in you."
+        ]
+    },
+    {
+        img: "layer3.jpg",
+        lines: [
+            "You’re my favorite notification.",
+            "I could look at you forever and still feel it’s not enough.",
+            "You make distance feel small and love feel big.",
+            "You’re the warmth in my cold days."
+        ]
+    },
+    {
+        img: "layer4.jpg",
+        lines: [
+            "Distance means nothing because you’re worth everything.",
+            "Even far away, you’re the closest to my heart.",
+            "Every mile between us is a reminder of how strong we are.",
+            "I miss you in ways words can’t explain."
+        ]
+    },
+    {
+        img: "layer5.jpg",
+        lines: [
+            "You’re the poem my heart has been trying to write.",
+            "You’re the peace in my chaos.",
+            "Your love feels like a place I never want to leave.",
+            "You’re the spark that makes my heart glow."
+        ]
+    },
+    {
+        img: "layer6.jpg",
+        lines: [
+            "You increase the opacity of my happiness by just existing.",
+            "For you I can do multiple revisions to get life better.",
+            "No transition could ever match how smoothly you entered my world.",
+            "You turned my messy timeline into a beautifully edited story."
+        ]
+    }
+];
+
+let currentLayer = 0;
+
+function startBox() {
+    document.querySelector(".button").style.display = "none";
+    loadLayer(0);
+}
+
+function loadLayer(index) {
+    currentLayer = index;
+
+    let c = document.getElementById("boxContainer");
+    c.innerHTML = "";
+    c.style.display = "block";
+
+    let l = document.createElement("div");
+    l.className = "layer";
+
+    let img = document.createElement("img");
+    img.src = layerData[index].img;
+    img.className = "centerImage";
+
+    // Create the 4 side texts
+    let top = document.createElement("div");
+    top.className = "sideText top";
+    top.innerText = layerData[index].lines[0];
+
+    let bottom = document.createElement("div");
+    bottom.className = "sideText bottom";
+    bottom.innerText = layerData[index].lines[1];
+
+    let left = document.createElement("div");
+    left.className = "sideText left";
+    left.innerText = layerData[index].lines[2];
+
+    let right = document.createElement("div");
+    right.className = "sideText right";
+    right.innerText = layerData[index].lines[3];
+
+    let btn = document.createElement("div");
+    btn.className = "nextBtn";
+    btn.innerText = (index === 5 ? "Finish" : "Next");
+    btn.onclick = nextLayer;
+
+    l.appendChild(top);
+    l.appendChild(bottom);
+    l.appendChild(left);
+    l.appendChild(right);
+    l.appendChild(img);
+    l.appendChild(btn);
+
+    c.appendChild(l);
+}
+
+function nextLayer() {
+    if (currentLayer < 5) {
+        loadLayer(currentLayer + 1);
+    } else {
+        document.getElementById("boxContainer").style.display = "none";
+        document.getElementById("finalMessage").style.display = "block";
+        launchConfetti();
+    }
+}
+
+/* Confetti */
+function launchConfetti() {
+    const duration = 3000;
+    const end = Date.now() + duration;
+
+    (function frame() {
+        confetti({
+            particleCount: 7,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 }
+        });
+        confetti({
+            particleCount: 7,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 }
+        });
+
+        if (Date.now() < end) requestAnimationFrame(frame);
+    })();
+}
+</script>
+
+<!-- External confetti library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</body>
+</html>

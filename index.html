@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Love, This Is For You 💗</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+    margin: 0;
+    background: #ffeaf4;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    text-align: center;
+    color: #d6337d;
+}
+
+button {
+    padding: 15px 30px;
+    background: #ff8fb7;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 50px;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(255,140,180,0.4);
+}
+
+#scene {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    perspective: 1500px;
+    margin-top: 120px;
+    display: none;
+}
+
+#giftBox {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    bottom: -500px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: bottom 2s ease;
+}
+
+.box-body {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(145deg, #ffbcd4, #ff8fb7);
+    border-radius: 10px;
+    position: relative;
+}
+
+.ribbon {
+    width: 30px;
+    height: 200px;
+    background: white;
+    position: absolute;
+    left: 85px;
+    top: 0;
+    border-radius: 5px;
+}
+
+.ribbon-horizontal {
+    width: 200px;
+    height: 30px;
+    background: white;
+    position: absolute;
+    top: 85px;
+    left: 0;
+    border-radius: 5px;
+}
+
+.lid {
+    width: 220px;
+    height: 40px;
+    background: linear-gradient(145deg, #ff8fb7, #ffbcd4);
+    border-radius: 8px;
+    position: absolute;
+    top: -40px;
+    left: -10px;
+    transform-origin: bottom;
+    transform: rotateX(0deg);
+    transition: transform 2s ease;
+}
+
+.flap {
+    width: 180px;
+    height: 180px;
+    background: #fff1f7;
+    border: 3px solid #ff8fb7;
+    border-radius: 12px;
+    position: absolute;
+    opacity: 0;
+    transition: all 2s ease;
+    box-shadow: 0 0 15px rgba(255,140,180,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    font-size: 14px;
+    color: #d6337d;
+}
+
+/* Positions */
+.top-flap { top: -190px; left: 10px; }
+.bottom-flap { bottom: -190px; left: 10px; }
+.left-flap { left: -190px; top: 10px; }
+.right-flap { right: -190px; top: 10px; }
+
+.center-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-top: 20px;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    border: 3px solid #ff8fb7;
+}
+
+.nextbtn {
+    margin-top: 15px;
+    padding: 12px 25px;
+    background: #ff8fb7;
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+#finalMessage {
+    display: none;
+    font-size: 28px;
+    color: #d6337d;
+    margin-top: 80px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<h1 style="margin-top:40px;">💗 A Special Surprise For You 💗</h1>
+<button onclick="start()">Open My Surprise</button>
+
+<div id="scene">
+    <div id="giftBox">
+        <div class="lid"></div>
+        <div class="box-body">
+            <div class="ribbon"></div>
+            <div class="ribbon-horizontal"></div>
+        </div>
+    </div>
+
+    <div class="flap top-flap" id="t1"></div>
+    <div class="flap bottom-flap" id="t2"></div>
+    <div class="flap left-flap" id="t3"></div>
+    <div class="flap right-flap" id="t4"></div>
+
+    <img id="centerImg" class="center-photo">
+    <div id="nextBtn" class="nextbtn" onclick="nextLayer()">Next</div>
+</div>
+
+<div id="finalMessage">💖 Happy Birthday My Love 💖</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+let layer = 0;
+
+let layers = [
+    {
+        img: "layer1.jpg",
+        lines: [
+            "You make my world softer just by existing.",
+            "I never believed in “perfect” until I met you.",
+            "My life got brighter the moment you walked into it.",
+            "You’re the best part of every day I live."
+        ]
+    },
+    {
+        img: "layer2.jpg",
+        lines: [
+            "You’re the reason my heart beats a little faster.",
+            "I wish you could see yourself the way I see you.",
+            "Your smile is my daily source of happiness.",
+            "I see the mother of my 2 children in you."
+        ]
+    },
+    {
+        img: "layer3.jpg",
+        lines: [
+            "You’re my favorite notification.",
+            "I could look at you forever and still feel it’s not enough.",
+            "You make distance feel small and love feel big.",
+            "You’re the warmth in my cold days."
+        ]
+    },
+    {
+        img: "layer4.jpg",
+        lines: [
+            "Distance means nothing because you’re worth everything.",
+            "Even far away, you’re the closest to my heart.",
+            "Every mile between us is a reminder of how strong we are.",
+            "I miss you in ways words can’t explain."
+        ]
+    },
+    {
+        img: "layer5.jpg",
+        lines: [
+            "You’re the poem my heart has been trying to write.",
+            "You’re the peace in my chaos.",
+            "Your love feels like a place I never want to leave.",
+            "You’re the spark that makes my heart glow."
+        ]
+    },
+    {
+        img: "layer6.jpg",
+        lines: [
+            "You increase the opacity of my happiness by just existing.",
+            "For you I can do multiple revisions to get life better.",
+            "No transition could ever match how smoothly you entered my world.",
+            "You turned my messy timeline into a beautifully edited story."
+        ]
+    }
+];
+
+function start() {
+    document.querySelector("button").style.display = "none";
+    document.getElementById("scene").style.display = "block";
+
+    setTimeout(() => {
+        document.getElementById("giftBox").style.bottom = "40px";
+    }, 100);
+
+    setTimeout(openLid, 2200);
+}
+
+function openLid() {
+    document.querySelector(".lid").style.transform = "rotateX(120deg)";
+    setTimeout(openFlaps, 2000);
+}
+
+function openFlaps() {
+    let L = layers[layer];
+
+    document.getElementById("t1").innerText = L.lines[0];
+    document.getElementById("t2").innerText = L.lines[1];
+    document.getElementById("t3").innerText = L.lines[2];
+    document.getElementById("t4").innerText = L.lines[3];
+
+    let flaps = document.querySelectorAll(".flap");
+    flaps.forEach(f => f.style.opacity = 1);
+
+    document.getElementById("t1").style.top = "-230px";
+    document.getElementById("t2").style.bottom = "-230px";
+    document.getElementById("t3").style.left = "-230px";
+    document.getElementById("t4").style.right = "-230px";
+
+    let img = document.getElementById("centerImg");
+    img.src = L.img;
+
+    setTimeout(() => {
+        img.style.opacity = 1;
+        document.getElementById("nextBtn").style.opacity = 1;
+    }, 1500);
+}
+
+function nextLayer() {
+    layer++;
+
+    if (layer >= layers.length) {
+        endMessage();
+        return;
+    }
+
+    resetLayer();
+    setTimeout(openLid, 1000);
+}
+
+function resetLayer() {
+    document.querySelector(".lid").style.transform = "rotateX(0deg)";
+    document.getElementById("nextBtn").style.opacity = 0;
+    document.getElementById("centerImg").style.opacity = 0;
+
+    let flaps = document.querySelectorAll(".flap");
+    flaps.forEach(f => {
+        f.style.opacity = 0;
+        f.style.top = "-190px";
+        f.style.bottom = "-190px";
+        f.style.left = "-190px";
+        f.style.right = "-190px";
+    });
+}
+
+function endMessage() {
+    document.getElementById("scene").style.display = "none";
+    document.getElementById("finalMessage").style.display = "block";
+
+    confetti();
+}
+</script>
+
+</body>
+</html>

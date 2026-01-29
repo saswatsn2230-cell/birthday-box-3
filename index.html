@@ -44,9 +44,9 @@ button {
     margin: auto;
     width: 260px;
     height: 260px;
-    margin-top: 100px;
+    margin-top: 35vh;   /* ✔ FIXED – moved lower / centered */
     position: relative;
-    display: none; /* starts hidden */
+    display: none;
 }
 
 /* -----------------------------------------------------
@@ -103,16 +103,9 @@ button {
     font-weight: 500;
 }
 
-/* Top flap uses different rotation origin */
 .topFlap { transform-origin: center bottom; }
-
-/* Left flap rotates horizontally */
 .leftFlap { transform-origin: right center; }
-
-/* Right flap rotates horizontally */
 .rightFlap { transform-origin: left center; }
-
-/* Bottom flap rotates downward */
 .bottomFlap { transform-origin: center top; }
 
 /* -----------------------------------------------------
@@ -167,7 +160,8 @@ button {
 
 <body>
 
-<audio autoplay loop>
+<!-- ✔ FIXED: Added id="bgm" for mobile audio -->
+<audio id="bgm" loop>
  <source src="song.mp3" type="audio/mpeg">
 </audio>
 
@@ -265,6 +259,10 @@ function startBox() {
     document.querySelector("button").style.display = "none";
     document.getElementById("explosionBox").style.display = "block";
 
+    /* ✔ FIXED: Play audio on user tap (mobile allows this) */
+    const audio = document.getElementById("bgm");
+    audio.play().catch(()=>{});
+
     // Soft lid pop
     setTimeout(() => {
         document.getElementById("lid").style.transform = "translateX(-50%) rotateX(120deg)";
@@ -280,19 +278,17 @@ function startBox() {
 function openFlaps() {
     const data = layers[current];
 
-    // Fill flap texts
     document.getElementById("topFlap").innerHTML = data.lines[0];
     document.getElementById("bottomFlap").innerHTML = data.lines[1];
     document.getElementById("leftFlap").innerHTML = data.lines[2];
     document.getElementById("rightFlap").innerHTML = data.lines[3];
 
-    // >>> UPDATED SPACING (ONLY CHANGE) <<<
-    document.getElementById("topFlap").style.transform = "translate(-50%, -180%) rotateX(0deg)";
+    /* ✔ FIXED: top flap moved DOWN for mobile visibility */
+    document.getElementById("topFlap").style.transform = "translate(-50%, -130%) rotateX(0deg)";
     document.getElementById("bottomFlap").style.transform = "translate(-50%, 80%) rotateX(0deg)";
     document.getElementById("leftFlap").style.transform = "translate(-180%, -50%) rotateY(0deg)";
     document.getElementById("rightFlap").style.transform = "translate(80%, -50%) rotateY(0deg)";
 
-    // Image fade-in
     let img = document.getElementById("centerImg");
     img.src = layers[current].img;
 
